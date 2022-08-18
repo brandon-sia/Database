@@ -28,5 +28,21 @@ namespace Database
             peopleFoundListBox.DataSource = people;
             peopleFoundListBox.DisplayMember = "FullInfo";
         }
+
+        private void insertButton_Click(object sender, EventArgs e)
+        {
+            DataAccess db = new DataAccess ();
+
+            db.InsertPerson(FirstNameIns.Text, LastNameIns.Text, PhoneNumIns.Text, EmailAddressIns.Text);
+
+            FirstNameIns.Text = "";
+            LastNameIns.Text = "";
+            PhoneNumIns.Text = "";
+            EmailAddressIns.Text = "";
+
+            peopleFoundListBox.DataSource = people;
+            peopleFoundListBox.DisplayMember = "FullInfo";
+
+        }
     }
 }

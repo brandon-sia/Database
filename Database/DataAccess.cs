@@ -14,7 +14,21 @@ namespace Database
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("AdventureWorksDB")))
             {
-                return connection.Query<People>("dbo.Person_GetByLastName @LastName", new {LastName = lastName}).ToList();
+                return connection.Query<People>("dbo.People_GetByLastName @LastName", new {LastName = lastName}).ToList();
+            }
+        }
+
+        public void InsertPerson(string firstName, string lastName, string phoneNumber, string emailAddress)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("AdventureWorksDB")))
+            {
+                //People newPerson = new People { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber};
+
+                List<People> people = new List<People>();
+
+                people.Add(new People { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, EmailAddress = emailAddress });
+
+                connection.Execute("dbo.People_Insert @FirstName, @LastName, @PhoneNumber, @EmailAddress", people);
             }
         }
     }

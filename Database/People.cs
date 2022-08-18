@@ -12,11 +12,15 @@ namespace Database
         public string LastName { get; set; }
         public int BusinessEntityID { get; set; }
 
+        public string EmailAddress { get; set; }
+
+        public string PhoneNumber { get; set; }
+
         public string FullInfo
         {
             get
             {
-                return $"{FirstName} {LastName} {BusinessEntityID}";
+                return $"{FirstName} {LastName} {PhoneNumber} {EmailAddress}";
             }
         }
     }
